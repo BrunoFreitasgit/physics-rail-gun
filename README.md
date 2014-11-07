@@ -3,7 +3,7 @@
 
 ### Estado ###
 
-Projecto em desenvolvimento, faltam implementar funções e limar resultados. O conteúdo relacionado como diagramas e relatórios estão igualmente em desenvolvimento.
+Projecto em desenvolvimento, faltam implementar funções e limar resultados. O conteúdo relacionado como diagramas e relatórios está igualmente em desenvolvimento.
 
 
 ### Introdução ###
@@ -40,7 +40,7 @@ Neste UC serão criados os segmentos que vão compor a Railgun. A criação requ
 Neste UC é realizada a simulação e apresentado ao utilizador dados como a quantidade necessário de segmentos, mediante os dados fornecidos no UC anterior; a força (N/m), a acelaração adquirida pelo projétil ao percorrer os trilhos e a sua velocidade final (velocidade ao sair dos trilhos).
 
 
-###UC_X###
+###UC_X:###
 ...
 ###Anexos###
 
