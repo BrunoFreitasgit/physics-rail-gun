@@ -16,7 +16,7 @@ ___
 * ![Fórmula.png](https://bitbucket.org/repo/qoBnBp/images/395699314-F%C3%B3rmula.png) - Para determinar a força através da Intensidade dos Campo Elétrico, comprimentos dos trilhos e da intensidade do Campo Magnético.
 ___
 
-* ![Fórmula_1.png](https://bitbucket.org/repo/qoBnBp/images/1115352075-F%C3%B3rmula_1.png)  - Fórmula para determinar a velocidade que será aplicada ao projétil.
+* ![Fórmula_1.png](https://bitbucket.org/repo/qoBnBp/images/1115352075-F%C3%B3rmula_1.png)  - Fórmula para determinar a velocidade que será aplicada ao projétil, através da velocidade inicial, a distância percorrido (comprimentos dos trilhos) e a acelaração.
 
 
 
@@ -31,7 +31,7 @@ Neste UC serão criados os segmentos que vão compor a Railgun. A criação requ
 
 ###UC2: Simular Railgun ###
 
-Neste UC é realizada a simulação e é apresntado ao utilizador dados como a quantidade necessário de segmentos mediante os dados fornecidos no UC anterior; a força (N/m), a acelaração adquirida pelo projétil ao percorrer os trilhos e a sua velocidade final (velocidade ao sair dos trilhos).
+Neste UC é realizada a simulação e apresentado ao utilizador dados como a quantidade necessário de segmentos, mediante os dados fornecidos no UC anterior; a força (N/m), a acelaração adquirida pelo projétil ao percorrer os trilhos e a sua velocidade final (velocidade ao sair dos trilhos).
 
 ###Anexos###
 
