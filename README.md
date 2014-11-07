@@ -31,27 +31,4 @@ Neste UC serão criados os segmentos que vão compor a Railgun. A criação requ
 
 ###UC2: Simular Railgun ###
 
-Neste UC é realizada a simulação e é fornecido ao utilizador dados 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Neste UC é realizada a simulação e é apresntado ao utilizador dados como a quantidade necessário de segmentos mediante os dados fornecidos no UC anterior; a força (N/m), a acelaração adquirida pelo projétil ao percorrer os trilhos e a sua velocidade final (velocidade ao sair dos trilhos).
