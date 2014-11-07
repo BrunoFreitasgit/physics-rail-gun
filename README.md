@@ -1,5 +1,11 @@
 # WIKI #
 
+
+### Estado ###
+
+Projecto em desenvolvimento, faltam implementar funções e limar resultados. O conteúdo relacionado como diagramas e relatórios estão igualmente em desenvolvimento.
+
+
 ### Introdução ###
 
 No seguinte repositório consta o desenvolvimento do trabalho prático a elaborar da disciplina de FSIAP (Física Aplicada). No contexto do segundo tema lecionado ao alunos, electricidade e magnetismo, o grupo decidiu programar uma aplicação que simula o disparo de um projétil através de uma railgun, um canhão electromagnético que recorre à electricidade e ao magnetismo para disparar objetos ao longo de segmentos metálicos.
@@ -24,15 +30,18 @@ ___
 #Use Cases#
 
 
-### UC1: Criar Segmento ###
+### UC_1: Criar Segmento ###
 
 Neste UC serão criados os segmentos que vão compor a Railgun. A criação requer ao utilizador que forneca certos dados como a intensidade do campo elétrico gerada pela corrente presente nos trilhos, o raio e comprimento dos trilhos e a massa do projétil a disparar. Criado um segmento este é registado e são executadas as fórmulas cujos resultados irão fornecer a informação relativa à Railgun.
 
 
-###UC2: Simular Railgun ###
+###UC_2: Simular Railgun ###
 
 Neste UC é realizada a simulação e apresentado ao utilizador dados como a quantidade necessário de segmentos, mediante os dados fornecidos no UC anterior; a força (N/m), a acelaração adquirida pelo projétil ao percorrer os trilhos e a sua velocidade final (velocidade ao sair dos trilhos).
 
+
+###UC_X###
+...
 ###Anexos###
 
 * Diagrama de Classes [[Aqui!]](http://imgur.com/fNVcvZ1) (Incompleto)
