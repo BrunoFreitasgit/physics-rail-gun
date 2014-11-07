@@ -35,6 +35,5 @@ Neste UC é realizada a simulação e é apresntado ao utilizador dados como a q
 
 ###Anexos###
 
-* [Diagrama de Classes](http://imgur.com/fNVcvZ1)   (Incompleto)
+* Diagrama de Classes [[Aqui]](http://imgur.com/fNVcvZ1) (Incompleto)
 * Diagrama de Sequência (Incompleto)
-
