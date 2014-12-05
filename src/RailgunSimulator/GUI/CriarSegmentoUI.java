@@ -6,7 +6,7 @@
 package RailgunSimulator.GUI;
 
 import RailgunSimulator.controller.CriarSegmentoController;
-import RailgunSimulator.model.Calculos;
+import RailgunSimulator.controller.SimularRailgunController;
 import RailgunSimulator.model.Railgun;
 import RailgunSimulator.model.Segmento;
 
@@ -17,18 +17,28 @@ import RailgunSimulator.model.Segmento;
 public class CriarSegmentoUI extends javax.swing.JDialog {
 
     private final Railgun railGun;
-    
+
     private final CriarSegmentoController csc;
 
+    private final SimularRailgunController src;
+    private final double massa;
+
     /**
-     * Creates new form ConstruirSegmento
+     * Creates new form CriarSegmentoSemMassa
+     *
+     * @param parent
+     * @param modal
+     * @param r
+     * @param massa
      */
-    public CriarSegmentoUI(java.awt.Frame parent, boolean modal, Railgun r) {
+    public CriarSegmentoUI(java.awt.Frame parent, boolean modal, Railgun r, double massa) {
         super(parent, modal);
         this.railGun = r;
         initComponents();
         setLocationRelativeTo(null);
         csc = new CriarSegmentoController(this.railGun);
+        src = new SimularRailgunController(this.railGun);
+        this.massa = massa;
     }
 
     /**
@@ -40,29 +50,39 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        limpar_button = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        intensidade_textfield = new javax.swing.JTextField();
         raio_textfield = new javax.swing.JTextField();
-        massa_textfield = new javax.swing.JTextField();
         comprimento_textfield = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         guardar_button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        limpar_button = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        intensidade_textfield = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        seg_table = new javax.swing.JTable();
+        simular_railgun_button = new javax.swing.JButton();
+        apagar_seg_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Criar Segmento");
+
+        limpar_button.setText("Limpar campos");
+        limpar_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpar_buttonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Comprimento dos trilhos (m)");
+
+        intensidade_textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                intensidade_textfieldActionPerformed(evt);
+            }
+        });
 
         raio_textfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 raio_textfieldActionPerformed(evt);
-            }
-        });
-
-        massa_textfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                massa_textfieldActionPerformed(evt);
             }
         });
 
@@ -83,15 +103,49 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
 
         jLabel2.setText("Raio dos trilhos (m)");
 
-        limpar_button.setText("Limpar campos");
+        seg_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Segmento", "Intensidade campo eletrico", "Raio dos trilhos", "Comprimento dos trilhos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jLabel3.setText("Comprimento dos trilhos (m)");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        jLabel4.setText("Massa do projétil (Kg)");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        seg_table.setColumnSelectionAllowed(true);
+        seg_table.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(seg_table);
+        seg_table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        intensidade_textfield.addActionListener(new java.awt.event.ActionListener() {
+        simular_railgun_button.setText("Simular");
+        simular_railgun_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                intensidade_textfieldActionPerformed(evt);
+                simular_railgun_buttonActionPerformed(evt);
+            }
+        });
+
+        apagar_seg_button.setText("Apagar");
+        apagar_seg_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apagar_seg_buttonActionPerformed(evt);
             }
         });
 
@@ -100,33 +154,39 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(simular_railgun_button)
+                        .addGap(40, 40, 40)
+                        .addComponent(apagar_seg_button))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(guardar_button)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(limpar_button))
+                        .addGap(18, 18, 18)
+                        .addComponent(limpar_button)
+                        .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(intensidade_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(massa_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comprimento_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(raio_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(55, 55, 55))
+                            .addComponent(raio_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {comprimento_textfield, intensidade_textfield, massa_textfield, raio_textfield});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(intensidade_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -142,60 +202,80 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(massa_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar_button)
-                    .addComponent(limpar_button))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(simular_railgun_button)
+                        .addComponent(apagar_seg_button))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(guardar_button)
+                        .addComponent(limpar_button)))
                 .addGap(42, 42, 42))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {comprimento_textfield, intensidade_textfield, massa_textfield, raio_textfield});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void raio_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raio_textfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_raio_textfieldActionPerformed
-
-    private void massa_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_massa_textfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_massa_textfieldActionPerformed
-
-    private void comprimento_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprimento_textfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comprimento_textfieldActionPerformed
+    private void limpar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpar_buttonActionPerformed
+        intensidade_textfield.setText("");
+        raio_textfield.setText("");
+        comprimento_textfield.setText("");
+    }//GEN-LAST:event_limpar_buttonActionPerformed
 
     private void intensidade_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_intensidade_textfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_intensidade_textfieldActionPerformed
 
+    private void raio_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raio_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_raio_textfieldActionPerformed
+
+    private void comprimento_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprimento_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comprimento_textfieldActionPerformed
+
     private void guardar_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar_buttonActionPerformed
         double intensidade = Double.parseDouble(intensidade_textfield.getText());
         double raio = Double.parseDouble(raio_textfield.getText());
         double comprimento = Double.parseDouble(comprimento_textfield.getText());
-        double massa = Double.parseDouble(massa_textfield.getText());
-        Segmento seg = new Segmento(intensidade, massa, raio, comprimento);
-        csc.setS(seg);
-        this.csc.run();
-        dispose();
+        if (intensidade != 0 && raio != 0 && comprimento != 0) {
+            Segmento seg = new Segmento(intensidade, raio, comprimento);
+            int linha = this.railGun.getSize();
+            seg_table.setValueAt(linha + 1, linha, 0);
+            seg_table.setValueAt(intensidade, linha, 1);
+            seg_table.setValueAt(raio, linha, 2);
+            seg_table.setValueAt(comprimento, linha, 3);
+            this.csc.inserirSegmento(seg);
+        }
+
     }//GEN-LAST:event_guardar_buttonActionPerformed
+
+    private void apagar_seg_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagar_seg_buttonActionPerformed
+        int index_a_apagar = seg_table.getSelectedRow();
+        seg_table.remove(index_a_apagar);
+    }//GEN-LAST:event_apagar_seg_buttonActionPerformed
+
+    private void simular_railgun_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simular_railgun_buttonActionPerformed
+        SimularRailgunUI srui = new SimularRailgunUI(null, true, this.railGun,this.massa);
+        srui.setVisible(true);
+    }//GEN-LAST:event_simular_railgun_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton apagar_seg_button;
     private javax.swing.JTextField comprimento_textfield;
     private javax.swing.JButton guardar_button;
     private javax.swing.JTextField intensidade_textfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpar_button;
-    private javax.swing.JTextField massa_textfield;
     private javax.swing.JTextField raio_textfield;
+    private javax.swing.JTable seg_table;
+    private javax.swing.JButton simular_railgun_button;
     // End of variables declaration//GEN-END:variables
 }

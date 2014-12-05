@@ -15,19 +15,18 @@ import RailgunSimulator.model.Railgun;
 public class SimularRailgunUI extends javax.swing.JDialog {
 
     private final Railgun railGun;
-
     private final SimularRailgunController src;
-
+    private static double massa;
     /**
      * Creates new form SimularRailgunUI
      */
-    public SimularRailgunUI(java.awt.Frame parent, boolean modal, Railgun r) {
+    public SimularRailgunUI(java.awt.Frame parent, boolean modal, Railgun r, double m) {
         super(parent, modal);
         this.railGun = r;
         initComponents();
+        SimularRailgunUI.massa = m;
         setLocationRelativeTo(null);
         src = new SimularRailgunController(this.railGun);
-
     }
 
     /**
@@ -54,7 +53,6 @@ public class SimularRailgunUI extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Simulador de railgun");
-        setPreferredSize(new java.awt.Dimension(400, 250));
         setResizable(false);
 
         jLabel2.setText("Número de segmentos");
@@ -147,11 +145,12 @@ public class SimularRailgunUI extends javax.swing.JDialog {
     }//GEN-LAST:event_forca_textfieldActionPerformed
 
     private void simular_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simular_buttonActionPerformed
-      String arr[] = this.src.getInfo();
-      this.num_seg_textfield.setText(arr[0]);
-      this.forca_textfield.setText(arr[1]);
-      this.aceleracao_textfield.setText(arr[2]);
-      this.velocidade_textfield.setText(arr[3]);
+        src.simular(massa);
+        String arr[] = this.src.getInfo();
+        this.num_seg_textfield.setText(arr[0]);
+        this.forca_textfield.setText(arr[1]);
+        this.aceleracao_textfield.setText(arr[2]);
+        this.velocidade_textfield.setText(arr[3]);
     }//GEN-LAST:event_simular_buttonActionPerformed
 
 

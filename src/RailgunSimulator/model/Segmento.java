@@ -14,18 +14,15 @@ public class Segmento {
 
     private double intensidade_camp_electrico; //intensidade campo eletrico
     private double inducao_magnetica; //intensidade campo magnetico
-    private double massa_projetil; //massa do projetil
     private double raio_trilhos; // distancia do centro do condutor ate a linha de campo
     private double comprimento_trilhos;
     private double forca; //força do projectil
     private double velocidade_inicial;
     private double velocidade_final;
     private double aceleracao_projetil;
-
     public Segmento() {
         this.intensidade_camp_electrico = 0;
         this.inducao_magnetica = 0;
-        this.massa_projetil = 0;
         this.raio_trilhos = 0;
         this.comprimento_trilhos = 0;
         this.forca = 0;
@@ -37,7 +34,17 @@ public class Segmento {
     public Segmento(double ice, double massa, double dist_linhas, double comp_trilhos) {
         this.intensidade_camp_electrico = ice;
         this.inducao_magnetica = Calculos.calcIntensidadeCampoMag(ice, dist_linhas);
-        this.massa_projetil = massa;
+        this.raio_trilhos = dist_linhas;
+        this.comprimento_trilhos = comp_trilhos;
+        this.forca = 0;
+        this.velocidade_inicial = 0;
+        this.velocidade_final = 0;
+        this.aceleracao_projetil = 0;
+    }
+
+    public Segmento(double ice, double dist_linhas, double comp_trilhos) {
+        this.intensidade_camp_electrico = ice;
+        this.inducao_magnetica = Calculos.calcIntensidadeCampoMag(ice, dist_linhas);
         this.raio_trilhos = dist_linhas;
         this.comprimento_trilhos = comp_trilhos;
         this.forca = 0;
@@ -47,7 +54,7 @@ public class Segmento {
     }
 
     public Segmento(Segmento seg) {
-        this(seg.getIntensidade_camp_electrico(), seg.getMassa_projetil(), seg.getRaio_trilhos(), seg.getComprimento_trilhos());
+        this(seg.getIntensidade_camp_electrico(), seg.getRaio_trilhos(), seg.getComprimento_trilhos());
         this.inducao_magnetica = seg.getInducao_magnetica();
     }
 
@@ -78,21 +85,6 @@ public class Segmento {
     public void setInducao_magnetica(double inducao_magnetica) {
         this.inducao_magnetica = inducao_magnetica;
     }
-
-    /**
-     * @return the massa
-     */
-    public double getMassa_projetil() {
-        return massa_projetil;
-    }
-
-    /**
-     * @param massa_projetil the massa to set
-     */
-    public void setMassa_projetil(double massa_projetil) {
-        this.massa_projetil = massa_projetil;
-    }
-
     /**
      * @return the dist_linhas
      */
@@ -173,14 +165,13 @@ public class Segmento {
     public void setAceleracao_projetil(double aceleracao_projetil) {
         this.aceleracao_projetil = aceleracao_projetil;
     }
-    
+
     @Override
     public String toString() {
-        String descricao = "Intensidade do Campo Elétrico: " + this.intensidade_camp_electrico + "N/C" +
-                "\nRaio dos trilhos: " + this.raio_trilhos + "m" + 
-                "\nComprimento dos trilhos: " + this.comprimento_trilhos + "m" +
-                "\nMassa do projétil: " + this.massa_projetil + "kg" + 
-                "\n***********************************************************";  
+        String descricao = "Intensidade do Campo Elétrico: " + this.intensidade_camp_electrico + "N/C"
+                + "\nRaio dos trilhos: " + this.raio_trilhos + "m"
+                + "\nComprimento dos trilhos: " + this.comprimento_trilhos + "m"
+                + "\n***********************************************************";
         return descricao;
     }
 }
