@@ -18,7 +18,7 @@ public class Railgun {
     public Railgun() {
 
     }
-
+ 
     public Railgun(ArrayList<Segmento> railgun) {
         this.railgun = railgun;
     }
