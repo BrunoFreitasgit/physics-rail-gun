@@ -5,9 +5,12 @@
  */
 package RailgunSimulator.model;
 
-import RailgunSimulator.GUI.InserirMassaProjetil;
+import RailgunSimulator.GUI.*;
+import RailgunSimulator.controller.*;
+import RailgunSimulator.model.*;
+import java.io.FileNotFoundException;
 
-/**
+/**s
  *
  * @author Bruno Freitas
  */
@@ -18,8 +21,17 @@ public class Main {
      */
     public static void main(String[] args) {
         Railgun r = new Railgun();
+        
         InserirMassaProjetil janela = new InserirMassaProjetil(r);
         janela.setVisible(true);
+        
+        
+           
+        
+                
+     
+        
+        
 //        DecimalFormat df = new DecimalFormat("#.##");
 //        
 //        Segmento s1 = new Segmento(1000, 0.05, 0.5, 8);

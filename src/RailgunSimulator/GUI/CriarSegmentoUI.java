@@ -5,10 +5,12 @@
  */
 package RailgunSimulator.GUI;
 
+
 import RailgunSimulator.controller.CriarSegmentoController;
 import RailgunSimulator.controller.SimularRailgunController;
-import RailgunSimulator.model.Railgun;
-import RailgunSimulator.model.Segmento;
+import RailgunSimulator.model.*;
+import java.io.FileNotFoundException;
+
 
 /**
  *
@@ -17,6 +19,7 @@ import RailgunSimulator.model.Segmento;
 public class CriarSegmentoUI extends javax.swing.JDialog {
 
     private final Railgun railGun;
+   
 
     private final CriarSegmentoController csc;
 
@@ -41,6 +44,7 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
         this.massa = massa;
     }
 
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +66,7 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
         seg_table = new javax.swing.JTable();
         simular_railgun_button = new javax.swing.JButton();
         apagar_seg_button = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,20 +154,20 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Criar Ficheiro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(simular_railgun_button)
-                        .addGap(40, 40, 40)
-                        .addComponent(apagar_seg_button))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -182,9 +187,20 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
                             .addComponent(comprimento_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(raio_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(simular_railgun_button)
+                .addGap(40, 40, 40)
+                .addComponent(apagar_seg_button)
+                .addGap(35, 35, 35)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,18 +218,16 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(simular_railgun_button)
-                        .addComponent(apagar_seg_button))
+                        .addComponent(apagar_seg_button)
+                        .addComponent(jButton1))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(guardar_button)
                         .addComponent(limpar_button)))
-                .addGap(42, 42, 42))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -263,12 +277,27 @@ public class CriarSegmentoUI extends javax.swing.JDialog {
         srui.setVisible(true);
     }//GEN-LAST:event_simular_railgun_buttonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       FicheiroUI fui = new FicheiroUI();
+       fui.setVisible(true);
+       
+        
+       HTMLFile f = new HTMLFile();
+       try{
+       f.novoFicheiro(src);
+       }catch (FileNotFoundException e){
+           
+       }
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton apagar_seg_button;
     private javax.swing.JTextField comprimento_textfield;
     private javax.swing.JButton guardar_button;
     private javax.swing.JTextField intensidade_textfield;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

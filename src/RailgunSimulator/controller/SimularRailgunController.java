@@ -56,6 +56,9 @@ public class SimularRailgunController {
         arr[1] = Double.toString((Math.round(segmentoFinal.getForca() * 100) / 100.0d));
         arr[2] = Double.toString((Math.round(segmentoFinal.getAceleracao_projetil() * 100) / 100.0d));
         arr[3] = Double.toString((Math.round(segmentoFinal.getVelocidade_final() * 100) / 100.0d));
+        
         return arr;
+        
+                
     }
 }
