@@ -21,6 +21,12 @@ public class SimularRailgunController {
     public SimularRailgunController(Railgun railgun) {
         this.r = railgun;
     }
+    
+    public Railgun getRailgun(){
+        
+        return this.r;
+        
+    }
 
     public int getNumeroSegmentos() {
         return this.r.getSize();
