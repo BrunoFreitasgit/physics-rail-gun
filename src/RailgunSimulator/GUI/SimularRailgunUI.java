@@ -6,8 +6,7 @@
 package RailgunSimulator.GUI;
 
 import RailgunSimulator.controller.SimularRailgunController;
-import RailgunSimulator.model.Railgun;
-
+import RailgunSimulator.model.*;
 /**
  *
  * @author Bruno Freitas
