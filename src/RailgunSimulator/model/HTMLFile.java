@@ -82,12 +82,12 @@ public class HTMLFile {
         linhaDescricao += "<td align=center> <b> Resultados Finais </b> </td> \n";
         linhaDescricao += "<td align=center> <b> Segmento N </b> </td> \n";
         
-        linhaDescricao += "<td align=center> <b> Forca (N/m)</b> </td> \n";
+        linhaDescricao += "<td align=center> <b> Forca (N)</b> </td> \n";
         linhaDescricao += "<td align=center> <b> Comprimento dos Trilhos (m)</b> </td> \n";
         linhaDescricao += "<td align=center> <b> Raio dos Trilhos (m) </b> </td> \n";
         linhaDescricao += "<td align=center> <b> Aceleracao do projectil (m/s^2) </b> </td> \n";
-        linhaDescricao += "<td align=center> <b> Velocidade final\ndo proj&eacutectil </b> </td> \n";
-        linhaDescricao += "<td align=center> <b> Velocidade inicial\ndo proj&eacutectil </b> </td> \n";
+        linhaDescricao += "<td align=center> <b> Velocidade final\ndo proj&eacutectil (m/s) </b> </td> \n";
+        linhaDescricao += "<td align=center> <b> Velocidade inicial\ndo proj&eacutectil (m/s) </b> </td> \n";
         
         linhaDescricao += "</tr /n>";
         
@@ -100,10 +100,10 @@ public class HTMLFile {
        
         linha2 += "<td align=center>  "+ seg.getForca()+"  </td> \n";
          linha2 += "<td align=center>  "+ seg.getComprimento_trilhos()+ "  </td> \n";
-         linha2 += "<td align=center>  "+ seg.getRaio_trilhos()+" (m/s) </td> \n";
+         linha2 += "<td align=center>  "+ seg.getRaio_trilhos()+" </td> \n";
         linha2 += "<td align=center>  "+ seg.getAceleracao_projetil() + "  </td> \n";
-        linha2 += "<td align=center>  "+ seg.getVelocidade_final()+" (m/s) </td> \n";
-        linha2 += "<td align=center>  "+ seg.getVelocidade_inicial()+" (m/s) </td> \n";
+        linha2 += "<td align=center>  "+ seg.getVelocidade_final()+"  </td> \n";
+        linha2 += "<td align=center>  "+ seg.getVelocidade_inicial()+"  </td> \n";
         
         linha2 += "</tr /n>";
         linha3 += linha2;
@@ -113,7 +113,7 @@ public class HTMLFile {
          linhaRG = "<tr> \n";
         linhaRG += "<td align=center> <b> Descricao </b> </td> \n";
         linhaRG += "<td align=center> <b> Numero de Segmentos </b> </td> \n";
-        linhaRG += "<td align=center> <b> Forca (N/m) </b> </td> \n";
+        linhaRG += "<td align=center> <b> Forca (N) </b> </td> \n";
         linhaRG += "<td align=center> <b>   </b> </td> \n";
         linhaRG += "<td align=center> <b>   </b> </td> \n";
        
